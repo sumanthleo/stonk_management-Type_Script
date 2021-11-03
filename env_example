@@ -48,4 +48,6 @@ PRIVATE_KEY = MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBALrknq4NRyg1BXfdDX
 
 ### For Sentry Log
 SENTRY_DSN="https://59093fdd1c6c4a1d856194164025b107@o1058830.ingest.sentry.io/6046721"
+DISCORD_DSN="https://discord.com/api/webhooks/905412486839304212/uDjXaeJJWDfstlpA9GTIb0VlOmTozSjD2Os8qEZI_HALflzOEASYU-k_rcrPDhBVtu-p"
+
 

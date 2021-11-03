@@ -43,6 +43,7 @@ class User {
 
             return;
         } catch (error: any) {
+            logger.error(error);
             res.status(500).json({
                 status: 500,
                 message: typeof error === 'string' ? error : typeof error.message === 'string' ? error.message : 500
