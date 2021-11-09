@@ -1,6 +1,7 @@
 import { logger } from '../../utils/logger';
 import models from '../../models/index';
 import { UserAttributes } from '../../models/users';
+import { Request, Response } from 'express';
 
 class User {
     constructor() {
@@ -20,7 +21,7 @@ class User {
      *
      * @apiSuccess {Object} User.
      */
-    async listUsers(req: any, res: any) {
+    async listUsers(req: Request, res: Response) {
         logger.info('!!!!!!listUsers function start!!!!!');
         try {
             const userData: UserAttributes = await models.users.findOne({

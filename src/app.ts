@@ -79,3 +79,10 @@ app.use((err, req, res, next) => {
 });
 
 export = app;
+
+// TODO:
+/**
+ *  Add Mail Service
+ *  Add Redis Queue
+ *  Add Push Notification service
+ */
