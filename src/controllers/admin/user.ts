@@ -2,7 +2,7 @@ import { logger } from '../../utils/logger';
 import models from '../../models/index';
 import { UserAttributes } from '../../models/users';
 import { Request, Response } from 'express';
-
+import { httpStatusCodes } from '../../utils/constants';
 class User {
     constructor() {
         // super();
@@ -37,7 +37,7 @@ class User {
             });
 
             res.json({
-                status: 200,
+                status: httpStatusCodes.SUCCESS_CODE,
                 message: 'successfully listed',
                 data: userData
             });
@@ -45,8 +45,8 @@ class User {
             return;
         } catch (error: any) {
             logger.error(error);
-            res.status(500).json({
-                status: 500,
+            res.status(httpStatusCodes.SERVER_ERROR_CODE).json({
+                status: httpStatusCodes.SERVER_ERROR_CODE,
                 message: typeof error === 'string' ? error : typeof error.message === 'string' ? error.message : 500
             });
 
