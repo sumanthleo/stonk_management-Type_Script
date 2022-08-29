@@ -1,4 +1,6 @@
 import { Sequelize, UUIDV4, Model, Optional, BuildOptions } from 'sequelize';
+import { logger } from '../utils/logger';
+// import { logger } from 'utils/logger';
 import { UserAttributes } from './users';
 
 export interface UserRolesAttributes {
@@ -63,7 +65,9 @@ export default (sequelize: Sequelize, DataTypes: any) => {
     };
 
     // TODO: make common function to sync
-    // await UserRoles.sync({ alter: true });
+    // UserRoles.sync({ alter: true }).then(() => {
+    //     logger.info('UserRoles sync successfully');
+    //     });
 
     return UserRoles;
 };

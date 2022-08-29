@@ -8,7 +8,7 @@ const { DATABASE_NAME, DATABASE_USER, DATABASE_PASS, DATABASE_HOST } = process.e
 // development
 export const sequelize = new Sequelize(DATABASE_NAME!, DATABASE_USER!, DATABASE_PASS!, {
     host: DATABASE_HOST!,
-    dialect: 'postgres'
+    dialect: 'mysql',
 });
 
 const op = Op;

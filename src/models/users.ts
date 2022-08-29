@@ -1,12 +1,20 @@
 import { Sequelize, UUIDV4, Model, Optional, BuildOptions } from 'sequelize';
+import { logger } from '../utils/logger';
 import { UserRolesAttributes } from './user_roles';
 
 export interface UserAttributes {
     id: string; // id is an auto-generated UUID
-    first_name: string;
-    last_name: string;
+    user_name: string;
+    // last_name: string;
     email: string;
+    password: string;
     phone: string;
+    age: number;
+    profile_image: string;
+    profile_image_url: string;
+    country: string;
+    user_wallet_balance: string;
+    is_active: boolean;
     _deleted: boolean;
     createdAt?: Date;
     updatedAt?: Date;
@@ -21,6 +29,8 @@ interface UserInstance extends Model<UserAttributes, UserCreationAttributes>, Us
     updatedAt?: Date;
 }
 
+
+//doubt
 type UserStatic = typeof Model & { associate: (models: any) => void } & (new (
         values?: Record<string, unknown>,
         options?: BuildOptions
@@ -34,28 +44,53 @@ export default (sequelize: Sequelize, DataTypes: any) => {
                 type: DataTypes.UUID,
                 allowNull: false,
                 primaryKey: true,
-                defaultValue: UUIDV4
+                defaultValue: UUIDV4,
             },
-            first_name: {
+            user_name: {
                 type: DataTypes.STRING,
-                allowNull: false
-            },
-            last_name: {
-                type: DataTypes.STRING,
-                allowNull: true
+                allowNull: false,
             },
             email: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: true,
+            },
+            password: {
+                type: DataTypes.STRING,
+                allowNull: false,
             },
             phone: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: true,
+                unique: true,
+            },
+            age: {
+                type: DataTypes.INTEGER,
+                allowNull: true,
+            },
+            profile_image: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            profile_image_url: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            country: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            user_wallet_balance: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
+            },
+            is_active: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: true,
             },
             _deleted: {
                 type: DataTypes.BOOLEAN,
-                allowNull: true,
-                defaultValue: false
+                defaultValue: false,
             }
         },
         {
@@ -73,7 +108,9 @@ export default (sequelize: Sequelize, DataTypes: any) => {
     };
 
     // TODO: make common function to sync
-    // await users.sync({ alter: true });
+    // Users.sync({ alter: true }).then(() => {
+    //     logger.info('Users sync Done!');
+    //     });
 
     return Users;
 };
